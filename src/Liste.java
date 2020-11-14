@@ -74,26 +74,28 @@ public class Liste {
         return this.reste.supprimerOrd(arbre);
     }
 
-    public Liste insererOrd(Arbre arbre, Liste l) {
+    public Liste insererOrd(Arbre arbre) {
 
         if (this.vide() || arbre.freq() < this.tete().freq())
             return this.prefixer(arbre);
 
-        return insererOrd(arbre, this.reste()).prefixer(this.tete());
+        return this.reste().insererOrd(arbre);
 
     }
-/*
-    public static void main(String[] args) {
 
-        Liste l = new Liste(1, new Liste(2, new Liste(3, new Liste(4, new Liste(5, new Liste())))));
+    /*public static void main(String[] args) {
+
+        Liste l = new Liste();
+
+        
         // System.out.println(l.inserer(6,l).reste().reste().reste().reste().reste().tete());
-        l = inserer(6, l);
-        l = inserer(10, l);
-        l = supprimerOrd(l, 10);
+        l.inserer(new Arbre(1,'a'));
+        l.inserer(new Arbre(2,'b'));
+        //l.supprimerOrd(l, 10);
 
         // System.out.println(l.prefixer(86).reste().tete());
-        afficher(l);
+        l.afficher();
         // afficherInverse(l);
-    }
-*/
+    }*/
+
 }

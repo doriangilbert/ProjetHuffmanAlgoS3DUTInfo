@@ -1,11 +1,12 @@
 public class Arbre {
 
-    private int freq = -1;
+    private int freq;
     private char lettre;
     private Arbre filsG;
     private Arbre filsD;
 
     public Arbre() {
+        this.freq = -1;
     }
 
     public Arbre(int freq, char lettre) {
@@ -119,14 +120,18 @@ public class Arbre {
      * 
      * }
      */
-/*
+
     public static void main(String[] args) {
 
-        Arbre root = new Arbre(1, new Arbre(2, new Arbre(4), new Arbre(5)), new Arbre(3, new Arbre(10), new Arbre()));
-        root.afficher();
+        Arbre groot = new Arbre();
+        groot.afficher();
+        groot = new Arbre(1,'t');
+        groot.afficher();
+        groot = new Arbre(1,'t',);
+
         // System.out.println(contenu(new Liste(2,new Liste(3,new Liste())),root));
         // System.out.println(root.contains(6));
 
     }
-*/
+
 }
