@@ -6,7 +6,6 @@ public class Liste {
     public Liste() {
         this.tete = new Arbre();
         //this.reste = null;
-        
     }
 
     public Liste(Arbre arbre, Liste liste) {
@@ -52,21 +51,25 @@ public class Liste {
     }
 
     public void afficher() {
-        if (!(this.vide())) {
+        if (this.vide())/*!(this.vide()))*/ {
+            //this.tete.afficher();
+            //this.reste.afficher();
+            System.out.println("vide");
+        }
+        else {
+            //System.out.println("vide");
             this.tete.afficher();
             this.reste.afficher();
         }
-        else 
-            System.out.println("vide");
     }
 
     public Liste inserer(Arbre arbre) {
 
-        if (this.vide()) {
-            return this.prefixer(arbre);
+        if (!this.vide()) {
+            return this.reste().inserer(arbre);
         }
         else {
-            return this.reste().inserer(arbre);
+            return this.prefixer(arbre);
         }
 
     }
@@ -84,8 +87,8 @@ public class Liste {
 
         if (this.vide() || arbre.freq() < this.tete().freq())
             return this.prefixer(arbre);
-
-        return this.reste().insererOrd(arbre);
+        else
+            return this.reste().insererOrd(arbre);
 
     }
 
@@ -105,7 +108,8 @@ public class Liste {
         Liste l2 = new Liste(new Arbre(5,'y'),new Liste(new Arbre(9,'t'),new Liste()));
         // System.out.println(l.prefixer(86).reste().tete());
 
-        l2.inserer(new Arbre(2,'b'));
+        l2 = l2.inserer(new Arbre(2,'b'));
+        //l2=l2.prefixer(new Arbre(2,'b'));
 
         l2.afficher();
         // afficherInverse(l);
