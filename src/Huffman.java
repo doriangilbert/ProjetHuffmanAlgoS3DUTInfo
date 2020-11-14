@@ -1,11 +1,11 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 
 public class Huffman {
 
-    public Arbre créerArbre(ArrayList<char, int> occurences) {
+    public Arbre créerArbre(HashMap<Character, Integer> occurences) {
         
         Liste l = new Liste();
         
@@ -13,13 +13,13 @@ public class Huffman {
 
             Arbre z = new Arbre();
             
-            Arbre x = l.tete()
+            Arbre x = l.tete();
 
             z.setFilsGauche(x);
-            Liste y = l.reste().tete();
+            Arbre y = l.reste().tete();
             z.setFilsDroit(x);
 
-            z.tete();
+            z.setFreq(x.freq());
 
         }
         
@@ -27,7 +27,19 @@ public class Huffman {
 
     }
 
-    public HashMap<char, int> lireFichier(){
+    public HashMap<Character,Integer> calculCodage(Arbre a) {
+
+    }
+
+    public String encoder(/*Texte*/) {
+
+    }
+
+    public /*Texte*/ decoder(String s) {
+
+    }
+
+    public HashMap<Character, Integer> lireFrequences(){
 
         HashMap<Character, Integer> coupleFreq = new HashMap<Character, Integer>();
         char lettre;
@@ -38,7 +50,7 @@ public class Huffman {
         try {
             read = new Scanner (new File("../src/freq.txt"));
         }
-        catch (FileNotFoundException e){
+        catch (Exception e){
             e.printStackTrace();
         }
         read.useDelimiter(",|\n");

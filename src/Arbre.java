@@ -8,8 +8,6 @@ public class Arbre {
     private Arbre filsD;
 
     public Arbre(int freq, char lettre) {
-        feuille = true;
-        vide = false;
 
         this.freq = freq;
         this.lettre = lettre;
@@ -33,8 +31,8 @@ public class Arbre {
         return this.freq;
     }
 
-    public int freq() {
-        return this.freq;
+    public char lettre() {
+        return this.lettre;
     }
 
     public boolean vide() {
@@ -52,6 +50,13 @@ public class Arbre {
     public Arbre filsDroit() {
 
         return filsD;
+    }
+    
+    public boolean feuille(){
+        if(this.filsDroit().vide() && this.filsGauche().vide())
+            return true;
+        else 
+            return false;
     }
 
     public void afficher() {
@@ -91,12 +96,20 @@ public class Arbre {
 
     }
 
+    public void setFreq(int freq){
+        this.freq = freq;
+    }
+
+    public void setLettre(char lettre){
+        this.lettre = lettre;
+    }
+
     public void setFilsGauche(Arbre arbre){
-        this.filsD = arbre;
-    
+        this.filsG = arbre;
+    }
 
     public void setFilsDroit(Arbre arbre){
-        this.fd = arbre;
+        this.filsD = arbre;
     }
 
     /*

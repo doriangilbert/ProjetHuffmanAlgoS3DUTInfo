@@ -17,7 +17,7 @@ public class Liste {
     public Arbre tete() {
         if (!this.vide())
             return tete;
-        return 0;
+        return null;
     }
 
     public boolean vide() {
