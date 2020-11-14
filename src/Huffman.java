@@ -101,7 +101,11 @@ public class Huffman {
 
         HashMap<Character, Integer> coupleFreq = new HashMap<Character, Integer>();
         //Liste liste = new Liste();
-        
+
+        String freqStr;
+        char lettre;
+        String str;
+        int freq;
         Scanner read = null;
         /*URL url = Huffman.class.getResource(cheminFreq);
             read = new Scanner(new File(url.getPath()));*/
@@ -116,31 +120,33 @@ public class Huffman {
         read.useDelimiter(",|\n");
         while (read.hasNext()) {
 
-            char lettre;
-            
-            String str = read.next();
-            if (str == "")
+            str = read.next();
+            if (str.length() == 0)
             {
                 lettre = '\s';
             }
             else if(str.charAt(0) == '\"')
             {
-                lettre = str.charAt(1);
+                lettre = ',';
             }
             else
             {
                 lettre = str.charAt(0);
             }
 
-            String freqStr = read.next();
-
-            int freq = (int)freqStr.charAt(freqStr.length()-1);
+            freqStr = read.next();
+            //if(freqStr == "\"")
+            //    freqStr = read.next();
             
-            //freq = Integer.parseInt(freqStr);
+            //char temp = freqStr.charAt(freqStr.length()-1);
+            //freq = (int)temp;
+            
+            freq = Integer.parseInt(freqStr);
+            
             //liste.insererOrd(new Arbre(freq,lettre));
             coupleFreq.put(lettre, freq);
         }
-        /*for (Character i : coupleFreq.keySet()) {
+        /*for (Character i : coupleFerq.keySet()) {
             System.out.println("key: " + i + "value: " + coupleFreq.get(i));
         }*/
         read.close();
@@ -150,9 +156,9 @@ public class Huffman {
 
     public static void main(String[] args) {
 
-        //HashMap<Character, Integer> coupleFreq = lireFrequences();
-        Liste coupleFreq = new Liste(new Arbre(5,'y'),new Liste(new Arbre(9,'t'),new Liste(new Arbre(15,'w'),new Liste(new Arbre(18,'e'),new Liste()))));
-        Arbre arbreHuffman = huffman(coupleFreq);
-        arbreHuffman.afficher();
+        HashMap<Character, Integer> coupleFreq = lireFrequences();
+        //Liste coupleFreq = new Liste(new Arbre(5,'y'),new Liste(new Arbre(9,'t'),new Liste(new Arbre(15,'w'),new Liste(new Arbre(18,'e'),new Liste()))));
+        //Arbre arbreHuffman = huffman(coupleFreq);
+        //arbreHuffman.afficher();
     }
 }
