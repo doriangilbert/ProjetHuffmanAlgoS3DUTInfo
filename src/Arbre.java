@@ -63,10 +63,10 @@ public class Arbre {
         if (!vide()) {
             System.out.println("freq : " + this.freq + " lettre : " + this.lettre);
 
-            if (!filsGauche().vide())
-                filsGauche().afficher();
-            if (!filsDroit().vide())
-                filsDroit().afficher();
+            if (!this.filsGauche().vide())
+                this.filsGauche().afficher();
+            if (!this.filsDroit().vide())
+                this.filsDroit().afficher();
 
         }
 
@@ -120,18 +120,20 @@ public class Arbre {
      * 
      * }
      */
-
+/*
     public static void main(String[] args) {
 
         Arbre groot = new Arbre();
         groot.afficher();
         groot = new Arbre(1,'t');
         groot.afficher();
-        groot = new Arbre(1,'t',);
-
+        groot = new Arbre(1,'t',new Arbre(3,'f'), new Arbre(9,'y'));
+        groot.afficher();
+        if (new Arbre(3,'f').contenu(groot))
+            System.out.println("yes");
+        groot.afficherInfixe();
         // System.out.println(contenu(new Liste(2,new Liste(3,new Liste())),root));
         // System.out.println(root.contains(6));
-
     }
-
+*/
 }

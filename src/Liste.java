@@ -4,6 +4,9 @@ public class Liste {
     private Liste reste;
 
     public Liste() {
+        this.tete = new Arbre();
+        //this.reste = null;
+        
     }
 
     public Liste(Arbre arbre, Liste liste) {
@@ -13,8 +16,9 @@ public class Liste {
 
     public Arbre tete() {
         if (!this.vide())
-            return tete;
-        return null;
+            return this.tete;
+        else
+            return null;
     }
 
     public boolean vide() {
@@ -27,8 +31,8 @@ public class Liste {
     public Liste reste() {
         if (!this.vide())
             return reste;
-
-        return new Liste();
+        else
+            return new Liste();
     }
 
     public Liste prefixer(Arbre arbre) {
@@ -49,9 +53,11 @@ public class Liste {
 
     public void afficher() {
         if (!(this.vide())) {
-            System.out.println(this.tete());
+            this.tete.afficher();
             this.reste.afficher();
         }
+        else 
+            System.out.println("vide");
     }
 
     public Liste inserer(Arbre arbre) {
@@ -60,7 +66,7 @@ public class Liste {
             return this.prefixer(arbre);
         }
         else {
-            return this.reste.inserer(arbre);
+            return this.reste().inserer(arbre);
         }
 
     }
@@ -83,19 +89,26 @@ public class Liste {
 
     }
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
 
-        Liste l = new Liste();
+        //Liste l = new Liste();
 
         
         // System.out.println(l.inserer(6,l).reste().reste().reste().reste().reste().tete());
-        l.inserer(new Arbre(1,'a'));
-        l.inserer(new Arbre(2,'b'));
+        //l.inserer(new Arbre(1,'a'));
+        //l.inserer(new Arbre(2,'b'));
         //l.supprimerOrd(l, 10);
-
         // System.out.println(l.prefixer(86).reste().tete());
-        l.afficher();
+        //l.afficher();
         // afficherInverse(l);
-    }*/
+         //l.supprimerOrd(l, 10);
+        Liste l2 = new Liste(new Arbre(5,'y'),new Liste(new Arbre(9,'t'),new Liste()));
+        // System.out.println(l.prefixer(86).reste().tete());
+
+        l2.inserer(new Arbre(2,'b'));
+
+        l2.afficher();
+        // afficherInverse(l);
+    }
 
 }
