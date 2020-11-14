@@ -1,56 +1,54 @@
+//Projet Huffman Algo S3 : Dorian GILBERT - Richard MOREL - Matteo SERRANO
 import java.util.HashMap;
 import java.util.Scanner;
 import java.io.File;
 import java.util.*;
 import java.io.IOException;
+import java.net.URL;
 
 public class Huffman {
 
     public static HashMap<Character, Integer> coupleFreq = new HashMap<Character, Integer>();
 
-    public static String cheminFreq = "";
-    public static String cheminTexte = "../toto.txt";
-
-    public Arbre creerArbre(HashMap<Character, Integer> occurences) {
+    public static String cheminFreq = "freq.txt";
+    public static String cheminTexte = "texteSE.txt";
+ 
+    public static Arbre huffman(Liste liste){
         
-
-
-    }
-
-    public Arbre huffman(Liste liste){
-
-        Liste l = new Liste();
-        
-        if(!l.reste().vide()){
+        if(!liste.reste().vide()){
 
             Arbre z = new Arbre();
             
-            Arbre x = l.tete();
+            Arbre x = liste.tete();
 
             z.setFilsGauche(x);
-            Arbre y = l.reste().tete();
-            z.setFilsDroit(x);
+            Arbre y = liste.reste().tete();
+            z.setFilsDroit(y);
 
             z.setFreq(x.freq()+y.freq());
-            return creerArbre(l.reste().reste().insererOrd(z));
+            return huffman(liste.reste().reste().insererOrd(z));
         }
+        else
+            return liste.tete();
         
-        return 
-
-
     }
 
-    public HashMap<Character, Integer> calculCodage(Arbre a) {
-        //Convertir les lettres/fréquences en codage binaire grace a l'arbre de Huffman
-        if(a.info()){
-            freq+"0";
-        }
-        else{
-            freq+"1";
-        }
+    
 
-        // Ca ca renvoie un hashmap genre : {('a',0),('b',011),...}
-    }
+  /*  public HashMap<Character, Integer> calculCodage(Arbre arbre) {
+
+        if(!arbre.vide()){
+            if(arbre.feuille){
+                System.out.println(lettre,freq);
+            }
+            else{
+                creerCodage(arbre.filsGauche());
+                creerCodage(arbre.filsDroit());
+            }
+        } 
+
+
+    }*/
 
     public ArrayList<String> encoder(String texte) {
         /*Comparer le texte avec la table de codage obtenue avec calculCodage pour récupérer le codage de chaque lettre et 
@@ -58,8 +56,10 @@ public class Huffman {
         Scanner read = null;
         String binaire;
         ArrayList<String> arrList = new ArrayList<String>(5);
-
-        File file = new File("../src/"+texte);
+        
+        URL url = Huffman.class.getResource(cheminFreq);
+        
+        File file = new File(url.getPath());
  
         try (FileReader fr = new FileReader(file)) {
             int content;
@@ -97,24 +97,27 @@ public class Huffman {
         return str;
     }
 
-    public static Liste lireFrequences() {
+    public static HashMap<Character, Integer> lireFrequences() {
 
-        //HashMap<Character, Integer> coupleFreq = new HashMap<Character, Integer>();
-        Liste liste = new Liste();
+        HashMap<Character, Integer> coupleFreq = new HashMap<Character, Integer>();
+        //Liste liste = new Liste();
         
-        
-        char lettre;
-        String freqStr;
-        int freq;
         Scanner read = null;
+        /*URL url = Huffman.class.getResource(cheminFreq);
+            read = new Scanner(new File(url.getPath()));*/
+            
+        URL url = Huffman.class.getResource(cheminFreq);
 
         try {
-            read = new Scanner(new File("../src/freq.txt"));
+            read = new Scanner(new File(url.getPath()));
         } catch (IOException e) {
             e.printStackTrace();
         }
         read.useDelimiter(",|\n");
         while (read.hasNext()) {
+
+            char lettre;
+            
             String str = read.next();
             if (str == "")
             {
@@ -128,22 +131,28 @@ public class Huffman {
             {
                 lettre = str.charAt(0);
             }
-            freqStr = read.next();
-            freq = Integer.parseInt(freqStr);
-            liste.insererOrd(new Arbre(freq,lettre));
-            //coupleFreq.put(lettre, freq);
+
+            String freqStr = read.next();
+
+            int freq = (int)freqStr.charAt(freqStr.length()-1);
+            
+            //freq = Integer.parseInt(freqStr);
+            //liste.insererOrd(new Arbre(freq,lettre));
+            coupleFreq.put(lettre, freq);
         }
         /*for (Character i : coupleFreq.keySet()) {
             System.out.println("key: " + i + "value: " + coupleFreq.get(i));
         }*/
         read.close();
 
-        return liste;
+        return coupleFreq;
     }
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
 
-        Liste coupleFreq = lireFrequences();
-
-    }*/
+        HashMap<Character, Integer> coupleFreq = lireFrequences();
+        //Liste coupleFreq = new Liste(new Arbre(5,'y'),new Liste(new Arbre(9,'t'),new Liste(new Arbre(15,'w'),new Liste(new Arbre(18,'e'),new Liste()))));
+        //Arbre arbreHuffman = huffman(coupleFreq);
+        //arbreHuffman.afficher();
+    }
 }

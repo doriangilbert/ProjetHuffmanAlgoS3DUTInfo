@@ -1,3 +1,4 @@
+//Projet Huffman Algo S3 : Dorian GILBERT - Richard MOREL - Matteo SERRANO
 public class Liste {
 
     private Arbre tete;
@@ -65,12 +66,12 @@ public class Liste {
 
     public Liste inserer(Arbre arbre) {
 
-        if (!this.vide()) {
-            return this.reste().inserer(arbre);
-        }
-        else {
+        if (this.vide()) {
             return this.prefixer(arbre);
         }
+        else
+            return this.reste().inserer(arbre).prefixer(this.tete());
+               
 
     }
 
@@ -88,31 +89,19 @@ public class Liste {
         if (this.vide() || arbre.freq() < this.tete().freq())
             return this.prefixer(arbre);
         else
-            return this.reste().insererOrd(arbre);
+            return this.reste().insererOrd(arbre).prefixer(this.tete());
 
     }
 
     public static void main(String[] args) {
 
-        //Liste l = new Liste();
+  
+        Liste l = new Liste(new Arbre(5,'y'),new Liste(new Arbre(9,'t'),new Liste()));
 
-        
-        // System.out.println(l.inserer(6,l).reste().reste().reste().reste().reste().tete());
-        //l.inserer(new Arbre(1,'a'));
-        //l.inserer(new Arbre(2,'b'));
-        //l.supprimerOrd(l, 10);
-        // System.out.println(l.prefixer(86).reste().tete());
-        //l.afficher();
-        // afficherInverse(l);
-         //l.supprimerOrd(l, 10);
-        Liste l2 = new Liste(new Arbre(5,'y'),new Liste(new Arbre(9,'t'),new Liste()));
-        // System.out.println(l.prefixer(86).reste().tete());
+        l = l.insererOrd(new Arbre(15,'b'));
+        //l=l.prefixer(new Arbre(2,'b'));
 
-        l2 = l2.inserer(new Arbre(2,'b'));
-        //l2=l2.prefixer(new Arbre(2,'b'));
-
-        l2.afficher();
-        // afficherInverse(l);
+        l.afficher();
     }
 
 }

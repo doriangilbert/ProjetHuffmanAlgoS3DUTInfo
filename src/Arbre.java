@@ -1,3 +1,4 @@
+//Projet Huffman Algo S3 : Dorian GILBERT - Richard MOREL - Matteo SERRANO
 public class Arbre {
 
     private int freq;
@@ -110,16 +111,11 @@ public class Arbre {
     public void setFilsDroit(Arbre arbre) {
         this.filsD = arbre;
     }
+/*
+    public HashMap<Character,Integer> creeCodage(){
 
-    /*
-     * public boolean contains ( int val) { // si val est contenu dans notre arbre
-     * if ( !vide) { if ( val == info()) return true; else { return
-     * filsGauche().contains(val) || filsDroit().contains(val); }
-     * 
-     * } return false;
-     * 
-     * }
-     */
+    }
+*/
 /*
     public static void main(String[] args) {
 
