@@ -19,19 +19,19 @@ public class Huffman {
             Arbre y = l.reste().tete();
             z.setFilsDroit(x);
 
-            z.setFreq(x.freq());
-
+            z.setFreq(x.freq()+y.freq());
+            return (l.reste().reste().insererOrd(z));
         }
         
-
-
-    }
-
-    public HashMap<Character,Integer> calculCodage(Arbre a) {
+        return 
 
     }
 
-    public String encoder(/*Texte*/) {
+    public HashMap<Character, Integer> calculCodage(Arbre a) {
+
+    }
+
+    public String encoder(/* Texte */) {
 
     }
 
@@ -39,7 +39,7 @@ public class Huffman {
 
     }
 
-    public HashMap<Character, Integer> lireFrequences(){
+    public HashMap<Character, Integer> lireFrequences() {
 
         HashMap<Character, Integer> coupleFreq = new HashMap<Character, Integer>();
         char lettre;
@@ -48,53 +48,37 @@ public class Huffman {
         int freq;
         Scanner read = null;
         try {
-            read = new Scanner (new File("../src/freq.txt"));
-        }
-        catch (Exception e){
+            read = new Scanner(new File("../src/freq.txt"));
+        } catch (Exception e) {
             e.printStackTrace();
         }
         read.useDelimiter(",|\n");
-        while (read.hasNext())
-        {
+        while (read.hasNext()) {
             String str = read.next();
-            lettre = str.charAt(0); //Problème string vide
+            lettre = str.charAt(0); // Problème string vide
             freqStr = read.next();
             freq = Integer.parseInt(freqStr);
             coupleFreq.put(lettre, freq);
         }
-        for (Character i : coupleFreq.keySet()){
-            System.out.println("key: "+ i +"value: "+ coupleFreq.get(i));
+        for (Character i : coupleFreq.keySet()) {
+            System.out.println("key: " + i + "value: " + coupleFreq.get(i));
         }
         read.close();
 
         return coupleFreq;
     }
 
-    public static void main(String[] args){
-        /*HashMap<Character, Integer> coupleFreq = new HashMap<Character, Integer>();
-        char lettre;
-        String freqStr;
-        char freq2;
-        int freq;
-        Scanner read = null;
-        try {
-            read = new Scanner (new File("../src/freq.txt"));
-        }
-        catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
-        read.useDelimiter(",|\n");
-        while (read.hasNext())
-        {
-            String str = read.next();
-            lettre = str.charAt(0); //Problème string vide
-            freqStr = read.next();
-            freq = Integer.parseInt(freqStr);
-            coupleFreq.put(lettre, freq);
-        }
-        for (Character i : coupleFreq.keySet()){
-            System.out.println("key: "+ i +"value: "+ coupleFreq.get(i));
-        }
-        read.close();*/
+    public static void main(String[] args) {
+        /*
+         * HashMap<Character, Integer> coupleFreq = new HashMap<Character, Integer>();
+         * char lettre; String freqStr; char freq2; int freq; Scanner read = null; try {
+         * read = new Scanner (new File("../src/freq.txt")); } catch
+         * (FileNotFoundException e){ e.printStackTrace(); } read.useDelimiter(",|\n");
+         * while (read.hasNext()) { String str = read.next(); lettre = str.charAt(0);
+         * //Problème string vide freqStr = read.next(); freq =
+         * Integer.parseInt(freqStr); coupleFreq.put(lettre, freq); } for (Character i :
+         * coupleFreq.keySet()){ System.out.println("key: "+ i +"value: "+
+         * coupleFreq.get(i)); } read.close();
+         */
     }
 }

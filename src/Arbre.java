@@ -7,6 +7,9 @@ public class Arbre {
     private Arbre filsG;
     private Arbre filsD;
 
+    public Arbre() {
+    }
+
     public Arbre(int freq, char lettre) {
 
         this.freq = freq;
@@ -22,9 +25,6 @@ public class Arbre {
         this.lettre = lettre;
         this.filsG = fg;
         this.filsD = fd;
-        if (filsDroit().vide() && this.filsGauche().vide())
-            feuille = true;
-
     }
 
     public int freq() {
@@ -36,7 +36,7 @@ public class Arbre {
     }
 
     public boolean vide() {
-        if(this.info == null)
+        if (this.info == null)
             return true;
         else
             return false;
@@ -51,11 +51,11 @@ public class Arbre {
 
         return filsD;
     }
-    
-    public boolean feuille(){
-        if(this.filsDroit().vide() && this.filsGauche().vide())
+
+    public boolean feuille() {
+        if (this.filsDroit().vide() && this.filsGauche().vide())
             return true;
-        else 
+        else
             return false;
     }
 
@@ -96,19 +96,19 @@ public class Arbre {
 
     }
 
-    public void setFreq(int freq){
+    public void setFreq(int freq) {
         this.freq = freq;
     }
 
-    public void setLettre(char lettre){
+    public void setLettre(char lettre) {
         this.lettre = lettre;
     }
 
-    public void setFilsGauche(Arbre arbre){
+    public void setFilsGauche(Arbre arbre) {
         this.filsG = arbre;
     }
 
-    public void setFilsDroit(Arbre arbre){
+    public void setFilsDroit(Arbre arbre) {
         this.filsD = arbre;
     }
 
@@ -122,7 +122,6 @@ public class Arbre {
      * }
      */
     public static void main(String[] args) {
-
 
         Arbre root = new Arbre(1, new Arbre(2, new Arbre(4), new Arbre(5)), new Arbre(3, new Arbre(10), new Arbre()));
         root.afficher();

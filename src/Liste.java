@@ -8,10 +8,9 @@ public class Liste {
     public Liste() {
     }
 
-    public Liste(int e, Liste l) {
-
-        tete = e;
-        reste = l;
+    public Liste(Arbre arbre, Liste liste) {
+        this.tete = arbre;
+        this.reste = liste;
     }
 
     public Arbre tete() {
@@ -34,8 +33,8 @@ public class Liste {
         return new Liste();
     }
 
-    public Liste prefixer(int val) {
-        return new Liste(val, this);
+    public Liste prefixer(Arbre arbre) {
+        return new Liste(arbre, this);
     }
 
     public static void afficherInverse(Liste l) {
@@ -78,10 +77,10 @@ public class Liste {
 
     public Liste insererOrd(int val, Liste l) {
 
-        if (l.vide() || val < l.tete())
-            return l.prefixer(val);
+        if (this.vide() || val < this.tete().freq())
+            return this.prefixer(this);
 
-        return insererOrd(val, l.reste()).prefixer(l.tete());
+        return insererOrd(val, this.reste()).prefixer(this.tete());
 
     }
 
