@@ -1,32 +1,27 @@
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Arbre {
 
-    private HashMap<Integer, String> info = new HashMap<Integer,String>();
+    private int freq;
+    private char lettre;
     private Arbre filsG;
     private Arbre filsD;
-    private boolean vide;
-    private boolean feuille = false;
 
-    public Arbre() {
-        vide = true;
-
-    }
-
-    public Arbre(int tete) {
+    public Arbre(int freq, char lettre) {
         feuille = true;
         vide = false;
 
-        this.info = tete;
+        this.freq = freq;
+        this.lettre = lettre;
         filsG = new Arbre();
         filsD = new Arbre();
 
     }
 
-    public Arbre(int info, Arbre fg, Arbre fd) {
-        vide = false;
+    public Arbre(int freq, char lettre, Arbre fg, Arbre fd) {
 
-        this.info = info;
+        this.freq = freq;
+        this.lettre = lettre;
         this.filsG = fg;
         this.filsD = fd;
         if (filsDroit().vide() && this.filsGauche().vide())
@@ -34,13 +29,19 @@ public class Arbre {
 
     }
 
-    public int info() {
-        return info;
+    public int freq() {
+        return this.freq;
+    }
+
+    public int freq() {
+        return this.freq;
     }
 
     public boolean vide() {
-
-        return vide;
+        if(this.info == null)
+            return true;
+        else
+            return false;
     }
 
     public Arbre filsGauche() {
@@ -56,7 +57,7 @@ public class Arbre {
     public void afficher() {
         // affiche d'abord info, fils gauche puis fils droit
         if (!vide()) {
-            System.out.println(info);
+            System.out.println(this.info);
 
             if (!filsGauche().vide())
                 filsGauche().afficher();
@@ -90,6 +91,14 @@ public class Arbre {
 
     }
 
+    public void setFilsGauche(Arbre arbre){
+        this.filsD = arbre;
+    
+
+    public void setFilsDroit(Arbre arbre){
+        this.fd = arbre;
+    }
+
     /*
      * public boolean contains ( int val) { // si val est contenu dans notre arbre
      * if ( !vide) { if ( val == info()) return true; else { return
@@ -100,11 +109,13 @@ public class Arbre {
      * }
      */
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
+
         Arbre root = new Arbre(1, new Arbre(2, new Arbre(4), new Arbre(5)), new Arbre(3, new Arbre(10), new Arbre()));
         root.afficher();
         // System.out.println(contenu(new Liste(2,new Liste(3,new Liste())),root));
         // System.out.println(root.contains(6));
+
     }
 
 }

@@ -1,8 +1,8 @@
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Liste {
 
-    private HashMap<Integer, String> tete;
+    private Arbre tete;
     private Liste reste;
 
     public Liste() {
@@ -14,14 +14,14 @@ public class Liste {
         reste = l;
     }
 
-    public int tete() {
+    public Arbre tete() {
         if (!this.vide())
             return tete;
         return 0;
     }
 
     public boolean vide() {
-        if (this.reste == null)
+        if (this.tete.vide())
             return true;
         else
             return false;
