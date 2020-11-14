@@ -1,8 +1,6 @@
-import java.util.ArrayList;
-
 public class Arbre {
 
-    private int freq;
+    private int freq = -1;
     private char lettre;
     private Arbre filsG;
     private Arbre filsD;
@@ -36,7 +34,7 @@ public class Arbre {
     }
 
     public boolean vide() {
-        if (this.info == null)
+        if (this.freq == -1)
             return true;
         else
             return false;
@@ -62,7 +60,7 @@ public class Arbre {
     public void afficher() {
         // affiche d'abord info, fils gauche puis fils droit
         if (!vide()) {
-            System.out.println(this.info);
+            System.out.println("freq : " + this.freq + " lettre : " + this.lettre);
 
             if (!filsGauche().vide())
                 filsGauche().afficher();
@@ -76,23 +74,23 @@ public class Arbre {
     public void afficherInfixe() {
         if (!vide()) {
             filsGauche().afficherInfixe();
-            System.out.println(this.info);
+            System.out.println("freq : " + this.freq + " lettre : " + this.lettre);
             filsDroit().afficherInfixe();
 
         }
     }
 
-    public static boolean contenu(Liste l, Arbre a) {
-        // on test si l appartient à a
+    public boolean contenu(Arbre a) {
+        // on teste si this appartient à a
 
-        if (l.vide())
+        if (this.vide())
             return true;
-        if (a.vide())
+        else if (a.vide())
             return false;
-        if (a.info() == l.tete())
-            return (contenu(l.reste(), a.filsGauche()) || contenu(l.reste(), a.filsDroit()));
+        else if (a.lettre() == this.lettre() && a.freq() == this.freq())
+            return (this.filsGauche().contenu(a) || this.filsDroit().contenu(a));
         else
-            return (contenu(l, a.filsGauche()) || contenu(l, a.filsDroit()));
+            return (this.contenu(a.filsGauche()) || this.contenu(a.filsDroit()));
 
     }
 
@@ -121,6 +119,7 @@ public class Arbre {
      * 
      * }
      */
+/*
     public static void main(String[] args) {
 
         Arbre root = new Arbre(1, new Arbre(2, new Arbre(4), new Arbre(5)), new Arbre(3, new Arbre(10), new Arbre()));
@@ -129,5 +128,5 @@ public class Arbre {
         // System.out.println(root.contains(6));
 
     }
-
+*/
 }

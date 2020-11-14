@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Liste {
 
     private Arbre tete;
@@ -49,41 +47,42 @@ public class Liste {
 
     }
 
-    public static void afficher(Liste liste) {
-        if (!(liste.vide())) {
-            System.out.println(liste.tete());
-            afficher(liste.reste);
+    public void afficher() {
+        if (!(this.vide())) {
+            System.out.println(this.tete());
+            this.reste.afficher();
         }
     }
 
-    public static Liste inserer(int val, Liste l) {
+    public Liste inserer(Arbre arbre) {
 
-        if (l.vide()) {
-            return l.prefixer(val);
-        } else {
-            return inserer(val, l.reste()).prefixer(l.tete());
+        if (this.vide()) {
+            return this.prefixer(arbre);
+        }
+        else {
+            return this.reste.inserer(arbre);
         }
 
     }
 
-    public static Liste supprimerOrd(Liste l, int val) {
-        if (l.vide())
-            return l;
-        if (l.tete() == val)
-            return supprimerOrd(l.reste(), val);
+    public Liste supprimerOrd(Arbre arbre) {
+        if (this.vide())
+            return this;
+        if (this.tete().freq() == arbre.freq())
+            return this.reste.supprimerOrd(arbre);
         // return l.tete() + supprimerOrd(l.reste,val);
-        return supprimerOrd(l.reste(), val);
+        return this.reste.supprimerOrd(arbre);
     }
 
-    public Liste insererOrd(int val, Liste l) {
+    public Liste insererOrd(Arbre arbre, Liste l) {
 
-        if (this.vide() || val < this.tete().freq())
-            return this.prefixer(this);
+        if (this.vide() || arbre.freq() < this.tete().freq())
+            return this.prefixer(arbre);
 
-        return insererOrd(val, this.reste()).prefixer(this.tete());
+        return insererOrd(arbre, this.reste()).prefixer(this.tete());
 
     }
-
+/*
     public static void main(String[] args) {
 
         Liste l = new Liste(1, new Liste(2, new Liste(3, new Liste(4, new Liste(5, new Liste())))));
@@ -96,5 +95,5 @@ public class Liste {
         afficher(l);
         // afficherInverse(l);
     }
-
+*/
 }
