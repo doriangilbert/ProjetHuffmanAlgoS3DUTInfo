@@ -150,9 +150,9 @@ public class Huffman {
 
     public static void main(String[] args) {
 
-        HashMap<Character, Integer> coupleFreq = lireFrequences();
-        //Liste coupleFreq = new Liste(new Arbre(5,'y'),new Liste(new Arbre(9,'t'),new Liste(new Arbre(15,'w'),new Liste(new Arbre(18,'e'),new Liste()))));
-        //Arbre arbreHuffman = huffman(coupleFreq);
-        //arbreHuffman.afficher();
+        //HashMap<Character, Integer> coupleFreq = lireFrequences();
+        Liste coupleFreq = new Liste(new Arbre(5,'y'),new Liste(new Arbre(9,'t'),new Liste(new Arbre(15,'w'),new Liste(new Arbre(18,'e'),new Liste()))));
+        Arbre arbreHuffman = huffman(coupleFreq);
+        arbreHuffman.afficher();
     }
 }
