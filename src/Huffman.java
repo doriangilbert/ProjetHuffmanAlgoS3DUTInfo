@@ -57,7 +57,7 @@ public class Huffman {
         String binaire;
         ArrayList<String> arrList = new ArrayList<String>(5);
         
-        URL url = Huffman.class.getResource(cheminFreq);
+        URL url = Huffman.class.getResource(cheminTexte);
         
         File file = new File(url.getPath());
  
@@ -102,7 +102,7 @@ public class Huffman {
         HashMap<Character, Integer> coupleFreq = new HashMap<Character, Integer>();
         //Liste liste = new Liste();
 
-        String freqStr;
+        String freqStr = "";
         char lettre;
         String str;
         int freq;
@@ -128,27 +128,28 @@ public class Huffman {
             else if(str.charAt(0) == '\"')
             {
                 lettre = ',';
+                freqStr = read.next();
+                System.out.println(freqStr);
+                freqStr = "2";
+                System.out.println(freqStr);
+                //read.skip("\"");
             }
             else
             {
                 lettre = str.charAt(0);
+                freqStr = read.next();
             }
 
-            freqStr = read.next();
-            //if(freqStr == "\"")
-            //    freqStr = read.next();
-            
-            //char temp = freqStr.charAt(freqStr.length()-1);
-            //freq = (int)temp;
-            
             freq = Integer.parseInt(freqStr);
             
+
+            //System.out.println(str + "  " + freqStr);  
+            //System.out.println(lettre + "  " + freq);  
+    
             //liste.insererOrd(new Arbre(freq,lettre));
-            coupleFreq.put(lettre, freq);
+        //    coupleFreq.put(lettre, freq);
         }
-        /*for (Character i : coupleFerq.keySet()) {
-            System.out.println("key: " + i + "value: " + coupleFreq.get(i));
-        }*/
+
         read.close();
 
         return coupleFreq;
